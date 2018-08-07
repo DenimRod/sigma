@@ -1,6 +1,13 @@
 {
   "name": "drawtest",
-  "app_id": "",
-  "type": "ionic-angular",
-  "integrations": {}
+  "proxies": [
+    {
+      "path": "/sigma",
+      "proxyUrl": "https://ordination-kutschera.at/sigma"
+    }
+  ],
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }

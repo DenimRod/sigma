@@ -1,0 +1,2 @@
+Include python macro to testmacro.odt:
+	python packmacros.py testmacro.odt macros.py
