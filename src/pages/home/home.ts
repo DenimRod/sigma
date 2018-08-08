@@ -3,27 +3,6 @@ import { NavController } from 'ionic-angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
 import { ToastController } from 'ionic-angular';
-import { File } from '@ionic-native/file';
-
-// function download(dataURL, filename) {
-// function getDataUri(url, callback) {
-//     var image = new Image();
-//
-//     image.onload = function () {
-//         var canvas = document.createElement('canvas');
-//         canvas.width = image.naturalWidth; // or 'width' if you want a special/scaled size
-//         canvas.height = image.naturalHeight; // or 'height' if you want a special/scaled size
-//
-//         canvas.getContext('2d').drawImage(image, 0, 0);
-//         alert("!");
-//         //or get as Data URI
-//         callback(canvas.toDataURL('image/jpeg'));
-//     };
-//     image.crossOrigin = 'anonymous';
-//     image.src = "http://ordination-kutschera.at/sigma/Test_Unterschrift.jpg";
-//
-// }
-
 
 function getFileFromServer(url, doneCallback) {
     var xhr;
@@ -79,7 +58,7 @@ export class HomePage {
     'penColor': '#666a73'
   };
 
-  constructor(public navController: NavController, public storage: Storage, public toastCtrl: ToastController, public file: File) {}
+  constructor(public navController: NavController, public storage: Storage, public toastCtrl: ToastController) {}
 
   ionViewDidEnter() {
     this.signaturePad.clear()
