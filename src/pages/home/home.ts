@@ -62,9 +62,9 @@ export class HomePage {
 
   ionViewDidEnter() {
     this.signaturePad.clear()
-    this.storage.get('savedSignature').then((data) => {
-      this.signature = data;
-    });
+    // this.storage.get('savedSignature').then((data) => {
+    //   this.signature = data;
+    // });
     //---check for local development---
     this.formURL = (this.testFlag ? "/sigma/form.txt"  : "https://ordination-kutschera.at/sigma/form.txt");
     this.sigURL = (this.testFlag ? "/sigma/saveImg.php"  : "https://ordination-kutschera.at/sigma/saveImg.php");
@@ -93,14 +93,14 @@ export class HomePage {
   }
 
   savePad() {
-    //--- save signature locally and clear form ---
+    //--- save signature and clear form ---
     this.signature = this.signaturePad.toDataURL();
-    this.storage.set('savedSignature', this.signature);
+    // this.storage.set('savedSignature', this.signature);
     this.signaturePad.clear();
     this.formLoaded = false;
     this.formAsImg = null;
 
-    //--- save on server ---
+    //--- upload on server ---
     let data = new FormData();
     data.append('type', 'signature');
     data.append('image', this.signature);

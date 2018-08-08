@@ -1,2 +1,5 @@
 Include python macro to testmacro.odt:
 	python packmacros.py testmacro.odt macros.py
+
+Run Ionic on Android Device:
+	ionic cordova run android --device --livereload
