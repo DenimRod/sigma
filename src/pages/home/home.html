@@ -1,8 +1,20 @@
 <ion-header>
   <ion-navbar color="danger">
+    <ion-buttons left *ngIf="signStarted">
+      <button ion-button icon-only class="topicon" (click)="clearPad()">
+        <ion-icon name="refresh-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
     <ion-title>
-      KD-Sigma v1.0
+      KD-Sigma v1.1
     </ion-title>
+
+    <ion-buttons right *ngIf="signStarted">
+      <button ion-button icon-only class="topicon" (click)="savePad()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -17,8 +29,9 @@
     <ion-col></ion-col>
 
   </ion-row>
-  <button ion-button full color="danger" (click)="clearPad()">Clear</button>
-  <button ion-button full color="secondary" (click)="savePad()">Save</button>
+
+  <!-- <button ion-button full color="danger" (click)="clearPad()">Clear</button>
+  <button ion-button full color="secondary" (click)="savePad()">Save</button> -->
 
   <!-- <ion-row>
     <ion-col></ion-col>

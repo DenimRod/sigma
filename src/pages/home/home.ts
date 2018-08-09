@@ -39,10 +39,11 @@ function putFileOnServer(url, data, doneCallback) {
 })
 
 export class HomePage {
+  testFlag = true;
   signature = '';
   formLoaded = false;
   isDrawing = false;
-  testFlag = true;
+  signStarted = false;
   formAsImg = null;
   formURL = '';
   sigURL = '';
@@ -86,6 +87,10 @@ export class HomePage {
           }
       });
     }
+    //---if form was loaded, drawing activates the buttons for sending/reloading---
+    else if (!this.signStarted) {
+      this.signStarted = true;
+    }
   }
 
   drawStart() {
@@ -95,9 +100,10 @@ export class HomePage {
   savePad() {
     //--- save signature and clear form ---
     this.signature = this.signaturePad.toDataURL();
-    // this.storage.set('savedSignature', this.signature);
+      // this.storage.set('savedSignature', this.signature);
     this.signaturePad.clear();
     this.formLoaded = false;
+    this.signStarted = false;
     this.formAsImg = null;
 
     //--- upload on server ---
@@ -118,6 +124,7 @@ export class HomePage {
 
   clearPad() {
     this.signaturePad.clear();
+    this.signStarted = false;
     //--- if form has been downloaded, draw it again --
     if(this.formAsImg) {
       this.signaturePad.fromDataURL(this.formAsImg, {width: 992, height: 1403});
