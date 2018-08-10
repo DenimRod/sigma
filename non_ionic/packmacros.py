@@ -19,7 +19,7 @@ doc = zipfile.ZipFile(filename,'a')
 if len(sys.argv)>2:
     pyFile = sys.argv[2]
 else:
-    pyFile = "macro.py"
+    pyFile = "macros.py"
 
 doc.write(pyFile, "Scripts/python/" + pyFile)
 manifest = []

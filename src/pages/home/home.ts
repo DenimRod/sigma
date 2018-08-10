@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
-import { Storage } from '@ionic/storage';
 import { ToastController } from 'ionic-angular';
 
 function getFileFromServer(url, doneCallback) {
@@ -59,13 +58,10 @@ export class HomePage {
     'penColor': '#666a73'
   };
 
-  constructor(public navController: NavController, public storage: Storage, public toastCtrl: ToastController) {}
+  constructor(public navController: NavController, public toastCtrl: ToastController) {}
 
   ionViewDidEnter() {
     this.signaturePad.clear()
-    // this.storage.get('savedSignature').then((data) => {
-    //   this.signature = data;
-    // });
     //---check for local development---
     this.formURL = (this.testFlag ? "/sigma/form.txt"  : "https://ordination-kutschera.at/sigma/form.txt");
     this.sigURL = (this.testFlag ? "/sigma/saveImg.php"  : "https://ordination-kutschera.at/sigma/saveImg.php");
