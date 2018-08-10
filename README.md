@@ -1,34 +1,29 @@
 # sigma
 is a SIGnature MAker for ganyMED, a medical software suite. It is based on LibreOffice, Basic, python, PHP and the Ionic Framework.
 
-The Architecture can be described as following:
+The architecture can be described as following:
 
 1. ganyClient (ganyMED -> LibreOffice + Basic and Python Macros)
 2. Server (PHP)
 3. ionicClient (Ionic)
 
 ## Installation
-1. Clone the Repository
+1. Clone the repository
 2. Install the necessary node_modules (npm install)
 3. Run the app (ionic serve)
 
-**ionicClient**
-
-Package the App and send it to your Device.
-
 **Server**
 
-Create a new subdirectory sigma/... for every instance using sigma individually.
+Create a new subdirectory sigma/yourName for every instance using sigma individually.
+
+**ionicClient**
+
+Edit the config object im home.ts to point to the correct server URL.
+Then package the app and send it to your device.
 
 **ganyClient**
 
-Move to the "non_ionic" folder and adapt all the Paths in
+Copy the `sigma_vorlage.odt` file plus the `sigma_files` directory.
+Edit the `config.json` to point to the correct server URL.
 
-* macros.py
-* the Basic Scripts inside KD_Sigma_v**.odt
-
-so that they match the Location on the Client and point to the correct server directory.
-
-Then run `python packmacros.py sigma_vorlage.odt macros.py` to insert the python macros into the .odt file.
-
-Now you can Copy the .odt File and include it as a form in ganyMED.
+Now you're ready to go - adapt the .odt file to your demands and import it as a form in ganyMED.

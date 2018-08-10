@@ -44,6 +44,10 @@ export class HomePage {
   isDrawing = false;
   signStarted = false;
   formAsImg = null;
+  config = {
+    'serverPathLocal' : '/sigma/testOrdi',
+    'serverPath' : 'https://ordination-kutschera.at/sigma/testOrdi'
+  }
   formURL = '';
   sigURL = '';
 
@@ -63,8 +67,8 @@ export class HomePage {
   ionViewDidEnter() {
     this.signaturePad.clear()
     //---check for local development---
-    this.formURL = (this.testFlag ? "/sigma/form.txt"  : "https://ordination-kutschera.at/sigma/form.txt");
-    this.sigURL = (this.testFlag ? "/sigma/saveImg.php"  : "https://ordination-kutschera.at/sigma/saveImg.php");
+    this.formURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPathLocal) + "/form.txt";
+    this.sigURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPathLocal) + "/saveImg.php";
 }
 
   drawComplete() {

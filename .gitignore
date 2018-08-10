@@ -29,9 +29,10 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
+non_ionic/Backup
 
-non_ionic/form.jpg
-non_ionic/signature.png
+non_ionic/sigma_files/form.jpg
+non_ionic/sigma_files/signature.png
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
