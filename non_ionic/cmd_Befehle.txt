@@ -3,3 +3,7 @@ Include python macro to testmacro.odt:
 
 Run Ionic on Android Device:
 	ionic cordova run android --device --livereload
+
+Deploy Ionic for Web:
+	!comment out cordova.js in index.html
+	ionic build --prod

@@ -14,12 +14,12 @@ The architecture can be described as following:
 
 **Server**
 
-Create a new subdirectory sigma/yourName for every instance using sigma individually.
+Create a new subdirectory `sigma/yourName` for every instance using sigma individually.
 
 **ionicClient**
 
-Edit the config object im home.ts to point to the correct server URL.
-Then package the app and send it to your device.
+Edit the config object in `home.ts` to point to the correct server URL.
+Then package the app and send it to your device of choice.
 
 **ganyClient**
 

@@ -6,9 +6,19 @@ import base64
 import json
 
 def importSignature(*args):
-       #---remove "file:///" from path, passed as argument from BASIC
-    finalPath = os.path.dirname(args[0])[8:]
-        #--- load config file (used for server path)
+       #---adapt sigma_files URL taken from .odt file
+    parsed = urllib.parse.urlparse(args[0])
+    path = parsed.path
+    netloc = parsed.netloc
+        #---1 if stored on local pc, remove first / of /D:/mydir...
+    if netloc == "":
+        path = path[1:]
+        #---2 if stored on server, add // to create //server/mydir...
+    else:
+        netloc = "//" + netloc
+    finalPath = netloc + path
+
+        #---load config file (used for server path)
     with open(finalPath + '/sigma_files/config.json', "r") as configFile:
         config = json.load(configFile)
 
@@ -22,15 +32,24 @@ def importSignature(*args):
         newfile.write(base64.decodestring(img_data))
         newfile.close()
 
-        #---optional log file
+        #...optional log file
     # with open(finalPath + "/sigma_files/log.txt", 'w') as f:
     #     f.write("Success!")
 
     return None
 
 def exportForm(*args):
-       #---remove "file:///" from path, passed as argument from BASIC
-    finalPath = os.path.dirname(args[0])[8:]
+       #---adapt sigma_files URL taken from .odt file
+    parsed = urllib.parse.urlparse(args[0])
+    path = parsed.path
+    netloc = parsed.netloc
+        #---1 if stored on local pc, remove first / of /D:/mydir...
+    if netloc == "":
+        path = path[1:]
+        #---2 if stored on server, add // to create //server/mydir...
+    else:
+        netloc = "//" + netloc
+    finalPath = netloc + path
         #--- load config file (used for server path)
     with open(finalPath + '/sigma_files/config.json', "r") as configFile:
         config = json.load(configFile)
@@ -47,7 +66,8 @@ def exportForm(*args):
     sendData = sendData.encode('ascii')
     req = urllib.request.Request(url, sendData)
     urllib.request.urlopen(req)
-    #--- if respose has to be read: ---
+
+    #... if respose has to be read:
     # with urllib.request.urlopen(req) as response:
        # res = response.read()
 

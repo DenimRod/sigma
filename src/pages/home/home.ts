@@ -9,6 +9,12 @@ function getFileFromServer(url, doneCallback) {
     xhr = new XMLHttpRequest();
     xhr.onreadystatechange = handleStateChange;
     xhr.open("GET", url, true);
+      // Set headers to force the form to be reloaded every time
+    xhr.setRequestHeader('Cache-control', 'no-cache');
+    xhr.setRequestHeader('Cache-control', 'no-store');
+    xhr.setRequestHeader('Expires', '0');
+    xhr.setRequestHeader('Pragma', 'no-cache');
+
     xhr.send();
 
     function handleStateChange() {
@@ -38,7 +44,8 @@ function putFileOnServer(url, data, doneCallback) {
 })
 
 export class HomePage {
-  testFlag = true;
+  testFlag = false;
+  version = 'v1.2';
   signature = '';
   formLoaded = false;
   isDrawing = false;
@@ -65,10 +72,11 @@ export class HomePage {
   constructor(public navController: NavController, public toastCtrl: ToastController) {}
 
   ionViewDidEnter() {
+    this.formLoaded = false;
     this.signaturePad.clear()
     //---check for local development---
-    this.formURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPathLocal) + "/form.txt";
-    this.sigURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPathLocal) + "/saveImg.php";
+    this.formURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPath) + "/form.txt";
+    this.sigURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPath) + "/saveImg.php";
 }
 
   drawComplete() {
