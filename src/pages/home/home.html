@@ -2,8 +2,9 @@
   <ion-navbar color="danger">
     <ion-buttons left *ngIf="signStarted">
       <button ion-button icon-only class="topicon" (click)="clearPad()">
-        <ion-icon name="refresh-circle"></ion-icon>
+         <ion-icon name="refresh-circle"></ion-icon>
       </button>
+      <span class="buttonText">Löschen</span>
     </ion-buttons>
 
     <ion-title>
@@ -11,8 +12,9 @@
     </ion-title>
 
     <ion-buttons right *ngIf="signStarted">
+      <span class="buttonText">OK</span>
       <button ion-button icon-only class="topicon" (click)="savePad()">
-        <ion-icon name="checkmark-circle"></ion-icon>
+         <ion-icon name="checkmark-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

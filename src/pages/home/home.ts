@@ -45,15 +45,15 @@ function putFileOnServer(url, data, doneCallback) {
 
 export class HomePage {
   testFlag = false;
-  version = 'v1.2';
+  version = 'v1.3';
   signature = '';
   formLoaded = false;
   isDrawing = false;
   signStarted = false;
   formAsImg = null;
   config = {
-    'serverPathLocal' : '/sigma/testOrdi',
-    'serverPath' : 'https://ordination-kutschera.at/sigma/testOrdi'
+    'serverPathLocal' : '/sigma/paulusPHP',
+    'serverPath' : 'https://www.ordination-kutschera.at/sigma/paulusPHP'
   }
   formURL = '';
   sigURL = '';
@@ -63,8 +63,8 @@ export class HomePage {
     'minWidth': 1,
     //'maxWidth': 2,
     'minDistance': 0,
-    'canvasWidth': 992,
-    'canvasHeight': 1403,
+    'canvasWidth': 800,
+    'canvasHeight': 1120,
     'backgroundColor': '#f6fbff',
     'penColor': '#666a73'
   };
@@ -90,7 +90,7 @@ export class HomePage {
           }
           else {
             this.formAsImg = "data:image/jpeg;base64, " + text;
-            this.signaturePad.fromDataURL(this.formAsImg, {width: 992, height: 1403});
+            this.signaturePad.fromDataURL(this.formAsImg, {width: 800, height: 1120});
             this.formLoaded = true;
           }
       });
@@ -135,7 +135,7 @@ export class HomePage {
     this.signStarted = false;
     //--- if form has been downloaded, draw it again --
     if(this.formAsImg) {
-      this.signaturePad.fromDataURL(this.formAsImg, {width: 992, height: 1403});
+      this.signaturePad.fromDataURL(this.formAsImg, {width: 800, height: 1120});
     }
   }
 }
