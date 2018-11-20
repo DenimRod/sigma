@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { ToastController } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 function getFileFromServer(url, doneCallback) {
     var xhr;
@@ -45,12 +46,14 @@ function putFileOnServer(url, data, doneCallback) {
 
 export class HomePage {
   testFlag = false;
-  version = 'v1.3';
+  version = 'v1.4';
   signature = '';
   formLoaded = false;
   isDrawing = false;
   signStarted = false;
   formAsImg = null;
+  height = 0;
+  width = 0;
   config = {
     'serverPathLocal' : '/sigma/paulusPHP',
     'serverPath' : 'https://www.ordination-kutschera.at/sigma/paulusPHP'
@@ -59,7 +62,7 @@ export class HomePage {
   sigURL = '';
 
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
-  private signaturePadOptions: Object = { // Check out https://github.com/szimek/signature_pad
+  public signaturePadOptions: Object = { // Check out https://github.com/szimek/signature_pad
     'minWidth': 1,
     //'maxWidth': 2,
     'minDistance': 0,
@@ -69,11 +72,25 @@ export class HomePage {
     'penColor': '#666a73'
   };
 
-  constructor(public navController: NavController, public toastCtrl: ToastController) {}
+  constructor(public navController: NavController, public toastCtrl: ToastController, public plt: Platform) {}
 
   ionViewDidEnter() {
     this.formLoaded = false;
     this.signaturePad.clear()
+    //---check device size---
+    this.width = this.plt.width();
+    this.height = this.plt.height();
+      //--check, whether width or height is "longest side"--
+    if (this.width * 1120 / 800 > this.height) {
+      this.width = this.height * 800 / 1120
+    }
+    else {
+      this.height = this.width * 1120 / 800
+    }
+
+    this.signaturePad.set("canvasWidth",this.width);
+    this.signaturePad.set("canvasHeight",this.height);
+
     //---check for local development---
     this.formURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPath) + "/form.txt";
     this.sigURL = (this.testFlag ? this.config.serverPathLocal : this.config.serverPath) + "/saveImg.php";
@@ -90,7 +107,7 @@ export class HomePage {
           }
           else {
             this.formAsImg = "data:image/jpeg;base64, " + text;
-            this.signaturePad.fromDataURL(this.formAsImg, {width: 800, height: 1120});
+            this.signaturePad.fromDataURL(this.formAsImg, {width: this.width, height: this.height});
             this.formLoaded = true;
           }
       });
@@ -133,9 +150,22 @@ export class HomePage {
   clearPad() {
     this.signaturePad.clear();
     this.signStarted = false;
-    //--- if form has been downloaded, draw it again --
-    if(this.formAsImg) {
-      this.signaturePad.fromDataURL(this.formAsImg, {width: 800, height: 1120});
-    }
+
+    getFileFromServer(this.formURL, (text) => {
+        if (text === null) {
+            // alert("Error");
+        }
+        else {
+          this.formAsImg = "data:image/jpeg;base64, " + text;
+          this.signaturePad.fromDataURL(this.formAsImg, {width: this.width, height: this.height});
+          this.formLoaded = true;
+        }
+    });
+
+    // this.signStarted = false;
+    // //--- if form has been downloaded, draw it again --
+    // if(this.formAsImg) {
+    //   this.signaturePad.fromDataURL(this.formAsImg, {width: 800, height: 1120});
+    // }
   }
 }

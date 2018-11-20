@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar color="danger">
-    <ion-buttons left *ngIf="signStarted">
+    <ion-buttons left *ngIf="formLoaded">
       <button ion-button icon-only class="topicon" (click)="clearPad()">
          <ion-icon name="refresh-circle"></ion-icon>
       </button>
-      <span class="buttonText">Löschen</span>
+      <span class="buttonText">Neu laden</span>
     </ion-buttons>
 
-    <ion-title>
+    <ion-title *ngIf="formLoaded==0">
       KD-Sigma {{version}}
     </ion-title>
 
@@ -21,7 +21,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="!formLoaded" class="title">Tippen Sie, um das Formular zu laden:</div>
+  <div *ngIf="!formLoaded" class="title">Unten tippen, um das Formular zu laden:</div>
   <div *ngIf="formLoaded" class="title">Nun können Sie signieren:</div>
   <ion-row [ngClass]="{'drawing-active': isDrawing}">
     <ion-col></ion-col>
@@ -29,18 +29,5 @@
       <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
     </ion-col>
     <ion-col></ion-col>
-
   </ion-row>
-
-  <!-- <button ion-button full color="danger" (click)="clearPad()">Clear</button>
-  <button ion-button full color="secondary" (click)="savePad()">Save</button> -->
-
-  <!-- <ion-row>
-    <ion-col></ion-col>
-    <ion-col width-80>
-      <img [src]="signature"/>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row> -->
-
 </ion-content>
