@@ -45,8 +45,8 @@ function putFileOnServer(url, data, doneCallback) {
 })
 
 export class HomePage {
-  testFlag = false;
-  version = 'v1.4';
+  testFlag = true;
+  version = 'v1.5b';
   signature = '';
   formLoaded = false;
   isDrawing = false;
@@ -55,8 +55,8 @@ export class HomePage {
   height = 0;
   width = 0;
   config = {
-    'serverPathLocal' : '/sigma/paulusPHP',
-    'serverPath' : 'https://www.ordination-kutschera.at/sigma/paulusPHP'
+    'serverPathLocal' : '/sigma/testOrdi',
+    'serverPath' : 'https://www.ordination-kutschera.at/sigma/testOrdi'
   }
   formURL = '';
   sigURL = '';
