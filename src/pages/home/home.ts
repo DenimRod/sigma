@@ -46,7 +46,7 @@ function putFileOnServer(url, data, doneCallback) {
 
 export class HomePage {
   testFlag = true;
-  version = 'v1.5b';
+  version = 'v1.6';
   signature = '';
   formLoaded = false;
   isDrawing = false;
@@ -106,7 +106,7 @@ export class HomePage {
               // alert("Error");
           }
           else {
-            this.formAsImg = "data:image/jpeg;base64, " + text;
+            this.formAsImg = "data:image/png;base64," + text;
             this.signaturePad.fromDataURL(this.formAsImg, {width: this.width, height: this.height});
             this.formLoaded = true;
           }
@@ -156,7 +156,7 @@ export class HomePage {
             // alert("Error");
         }
         else {
-          this.formAsImg = "data:image/jpeg;base64, " + text;
+          this.formAsImg = "data:image/png;base64," + text;
           this.signaturePad.fromDataURL(this.formAsImg, {width: this.width, height: this.height});
           this.formLoaded = true;
         }

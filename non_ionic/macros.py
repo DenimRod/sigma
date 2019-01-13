@@ -54,7 +54,7 @@ def exportForm(*args):
     with open(finalPath + '/sigma_files/config.json', "r") as configFile:
         config = json.load(configFile)
 
-    with open(finalPath + "/sigma_files/form.jpg", "rb") as imgfile:
+    with open(finalPath + "/sigma_files/form.png", "rb") as imgfile:
         data = imgfile.read()
         encoded_string = base64.b64encode(data)
 
