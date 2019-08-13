@@ -1,10 +1,11 @@
 <ion-header>
   <ion-navbar color="danger">
     <ion-buttons left *ngIf="formLoaded">
-      <button ion-button icon-only class="topicon" (click)="clearPad()">
+
+      <button left ion-button icon-start class="topicon" (click)="clearPad()">
          <ion-icon name="refresh-circle"></ion-icon>
+         <span class="buttonText"> Neu laden</span>
       </button>
-      <span class="buttonText">Neu laden</span>
     </ion-buttons>
 
     <ion-title *ngIf="formLoaded==0">
@@ -12,21 +13,20 @@
     </ion-title>
 
     <ion-buttons right *ngIf="signStarted">
-      <span class="buttonText">OK</span>
-      <button ion-button icon-only class="topicon" (click)="savePad()">
+      <button right ion-button icon-end class="topicon" (click)="savePad()">
+        <span class="buttonText"> OK</span>
          <ion-icon name="checkmark-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <div *ngIf="!formLoaded" class="title">Unten tippen, um das Formular zu laden:</div>
-  <div *ngIf="formLoaded" class="title">Nun können Sie signieren:</div>
-  <ion-row [ngClass]="{'drawing-active': isDrawing}">
+<ion-content no-bounce>
+  <div class="title"> {{infoText}} </div>
+  <ion-row>
     <ion-col></ion-col>
     <ion-col>
-      <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+      <signature-pad [options]="signaturePadOptions" (onEndEvent)="drawComplete()"></signature-pad>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>

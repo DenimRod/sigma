@@ -1,0 +1,25 @@
+**Server**
+
+Am KD-Server im Ordner "sigma" einen neuen Ordner mit "ordiname" und einen mit "ordinamePHP" anlegen.
+saveImg.php in den PHP-Ordner kopieren.
+
+**Ionic**
+
+In Home.ts beide Links auf die neue Internetadresse "../sigma/ordinamePHP" legen.
+Kompilieren und www ordner nach "/sigma/ordiname" kopieren.
+
+**GanyMED**
+
+`sigma_vorlage.odt` im GanyMED Verzeichnis in den Ordner "Vorlagen" kopieren.
+`sigma_files` in den Ordner "Scanbefunde" kopieren. (?)
+`config.json` auf die neue Internetadresse "../sigma/ordinamePHP" ändern.
+
+entweder smw.ini bzw. gmconfig editieren: Fachbereich -> DLL = gmPDF.dll
+
+Auf patient.txt Pfad achten!!! Einstellen in smw.ini
+
+Bei Patient 0 einsteigen, rechte Maustaste in den Wartelisten (bzw. PDFDLL-Bereich)
+Fremdbefunde-Pfad auf ...sm/scanbefunde/ legen !wichtig ist schließendes /!
+und sigma_vorlage.odt mit dem Namen "DSGVO" als neues Formular anlegen.
+
+Rest siehe Trello
